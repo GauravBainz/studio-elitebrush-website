@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--my-font);
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --customRed: #e0310a;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: black;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--my-font), sans-serif;
+}
+
+html {
+  font-family: var(--my-font), sans-serif;
+}
+
