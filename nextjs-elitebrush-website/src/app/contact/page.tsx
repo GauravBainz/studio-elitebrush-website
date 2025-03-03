@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from 'next/image';
+// Removed unused Image import
 
 export default function ContactPage() {
   return (
@@ -129,8 +129,6 @@ export default function ContactPage() {
               </a>
             </p>
           </div>
-
-
         </div>
       </section>
     </main>

@@ -1,10 +1,18 @@
 import imageUrlBuilder from '@sanity/image-url';
 import { client } from '@/sanity/client';
 
-// Create the image URL builder using your Sanity client
+// Create a Sanity image URL builder instance
 const builder = imageUrlBuilder(client);
 
-// Function to generate image URLs with optional transformations
-export function urlFor(source: any) {
+// Define proper type for the image reference
+interface SanityImageReference {
+  asset: {
+    _ref: string;
+    _type: string;
+  };
+}
+
+// Generate image URLs from Sanity image references
+export function urlFor(source: SanityImageReference) {
   return builder.image(source);
 }

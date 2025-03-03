@@ -3,6 +3,27 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import ImageCarousel from "./ImageCarousel";
 
+interface Block {
+  children?: { text: string }[];
+}
+
+interface ContentType {
+  _id: string;
+  title: string;
+  slug: { current: string };
+  publishedAt: string;
+  _type: string;
+  body?: Block[];
+  mainImage?: any;
+  images?: any[];
+  image?: {
+    asset: {
+      _id: string;
+      url: string;
+    }
+  };
+}
+
 export default async function ContentPage({ params }: { params: { slug: string } }) {
   // Query to fetch mainImage and additional images
   const query = `*[
@@ -24,7 +45,7 @@ export default async function ContentPage({ params }: { params: { slug: string }
     }
   }`;
   
-  const content = await client.fetch(query, { slug: params.slug });
+  const content: ContentType = await client.fetch(query, { slug: params.slug });
 
   // Return 404 if no content is found
   if (!content) {
@@ -33,7 +54,7 @@ export default async function ContentPage({ params }: { params: { slug: string }
 
   // Determine content type
   const isPainting = content._type === "painting";
-  const isEpoxy = content._type === "epoxy";
+  // Removed unused isEpoxy variable
 
   // Check if we should use legacy "image" field or the new mainImage/images structure
   const hasNewImageStructure = !!content.mainImage;
@@ -86,9 +107,9 @@ export default async function ContentPage({ params }: { params: { slug: string }
         {/* Render content body - Improved spacing and typography */}
         {content.body && (
           <div className="prose prose-invert max-w-none mt-10 mx-auto px-5 sm:px-0">
-            {content.body.map((block: any, index: number) => (
+            {content.body.map((block, index) => (
               <p key={index} className="mb-5 text-gray-200 text-lg leading-relaxed">
-                {block.children?.map((child: any, childIndex: number) => (
+                {block.children?.map((child, childIndex) => (
                   <span key={childIndex}>{child.text}</span>
                 ))}
               </p>

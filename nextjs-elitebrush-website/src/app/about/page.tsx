@@ -52,7 +52,7 @@ export default function AboutPage() {
           <div className="mb-8">
             <h2 className="text-2xl font-semibold mb-4 text-red-500">Who We Are</h2>
             <p className="mb-6 text-white text-lg leading-relaxed">
-              At EliteBrush Co, we're passionate young entrepreneurs committed to transforming the painting and epoxy industry in Northern BC with superior craftsmanship and innovation.
+              At EliteBrush Co, we&apos;re passionate young entrepreneurs committed to transforming the painting and epoxy industry in Northern BC with superior craftsmanship and innovation.
             </p>
             <p className="mb-6 text-white text-lg leading-relaxed">
               What sets us apart is our dedication to excellence. We use only premium materials and state-of-the-art equipment to deliver results that exceed expectations.
@@ -61,7 +61,7 @@ export default function AboutPage() {
               Every project is an opportunity for us to create something extraordinary. We bring creativity and precision to every job, unlocking the true potential of your space.
             </p>
             <p className="text-white text-lg leading-relaxed">
-              Our goal is to build Northern BC's premier painting and epoxy brand, one transformation at a time. Let us elevate your space with our passion, skill, and artistry.
+              Our goal is to build Northern BC&apos;s premier painting and epoxy brand, one transformation at a time. Let us elevate your space with our passion, skill, and artistry.
             </p>
           </div>
     </div>

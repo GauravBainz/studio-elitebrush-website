@@ -43,6 +43,9 @@ const ImageCarousel = ({ mainImage, additionalImages }: {
 
   // Preload images
   useEffect(() => {
+    // Check if running in browser environment
+    if (typeof window === 'undefined') return;
+    
     // Preload next image
     const nextIndex = currentIndex === allImages.length - 1 ? 0 : currentIndex + 1;
     if (!loadedImages[nextIndex] && allImages[nextIndex]) {
