@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { urlFor } from "@/lib/sanity/imageUrlBuilder";
 
 const ImageCarousel = ({ mainImage, additionalImages }: { 
@@ -24,6 +25,27 @@ const ImageCarousel = ({ mainImage, additionalImages }: {
 
   return (
     <>
+      {/* Fixed Navigation - Same as in page.tsx */}
+      <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-4 flex justify-between items-center">
+        <Link href="/">
+          <span className="text-white hover:text-red-500 transition-all">
+            EliteBrush Co.
+          </span>
+        </Link>
+        <div className="flex space-x-6">
+          <Link
+            href="/about"
+            className="px-3 py-2 text-white transition-all hover:text-red-500">
+            Our Story
+          </Link>
+          <Link
+            href="/contact"
+            className="px-3 py-2 text-white transition-all hover:text-red-500">
+            Contact
+          </Link>
+        </div>
+      </nav>
+
       <div className="relative w-full rounded-lg overflow-hidden mb-8">
         {/* Main Image */}
         <div className="relative aspect-[3/4] max-h-[70vh] mx-auto">
