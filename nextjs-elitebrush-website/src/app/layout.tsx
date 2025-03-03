@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Orbitron } from "next/font/google";
 import "./globals.css";
 
+
 const myFont = Orbitron({
   subsets: ["latin"],
   weight: ['400', '500', '700'],
