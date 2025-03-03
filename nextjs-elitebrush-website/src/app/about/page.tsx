@@ -5,14 +5,10 @@ export default function AboutPage() {
   return (
     <main className="container mx-auto min-h-screen max-w-3xl p-8">
       <div className="absolute top-4 left-4">
-        <Link href="/">
-          <Image 
-            src="/images/logo.png" 
-            alt="EliteBrush Co." 
-            width={150} 
-            height={43} 
-            style={{ height: 'auto', maxHeight: '43px' }} 
-          />
+      <Link href="/">
+          <span className="text-white hover:text-red-500 transition-all">
+            EliteBrush Co.
+          </span>
         </Link>
       </div>
       

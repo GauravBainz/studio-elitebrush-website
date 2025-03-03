@@ -16,11 +16,11 @@
   ],
   "dependencies": {
     "@sanity/image-url": "^1.1.0",
-    "@sanity/orderable-document-list": "^1.2.3",
+    "@sanity/orderable-document-list": "^1.1.0",
     "@sanity/vision": "^3.77.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "sanity": "^3.77.2",
+    "sanity": "^3.x.x",
     "styled-components": "^6.1.8"
   },
   "devDependencies": {

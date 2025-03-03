@@ -1,14 +1,15 @@
+
 import Link from "next/link";
 import Image from 'next/image';
 import { type SanityDocument } from "next-sanity";
 import { client } from "@/sanity/client";
 import { urlFor } from "@/lib/sanity/imageUrlBuilder";
 
-// Updated query to fetch painting and epoxy content, filtering out images in upload state
+// Updated query to use orderRank for sorting
 const CONTENT_QUERY = `*[
   _type in ["painting", "epoxy"]
   && defined(slug.current)
-]|order(publishedAt desc)[0...12]{
+]|order(orderRank)[0...12]{
   _id, 
   title, 
   slug, 
@@ -17,6 +18,7 @@ const CONTENT_QUERY = `*[
   body,
   mainImage,
   images,
+  orderRank,
   "image": image {
     asset->{
       _id,
@@ -95,20 +97,32 @@ export default async function IndexPage() {
                 <div className="relative overflow-hidden rounded-sm shadow-md h-full">
                   {painting.mainImage ? (
                     <div className="relative h-64">
-                      <img
-                        src={urlFor(painting.mainImage).width(500).height(400).url()}
-                        alt={painting.title || "Painting image"}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                      />
+                      <div className="relative w-full h-full">
+                        <Image
+                          src={urlFor(painting.mainImage).width(500).height(400).url()}
+                          alt={painting.title || "Painting image"}
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          className="object-cover transition-transform duration-500 group-hover:scale-110"
+                          placeholder="blur"
+                          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFdQJhYUwl8wAAAABJRU5ErkJggg=="
+                        />
+                      </div>
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
                   ) : painting.image && painting.image.asset ? (
                     <div className="relative h-64">
-                      <img
-                        src={urlFor(painting.image).width(500).height(400).url()}
-                        alt={painting.title || "Painting image"}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                      />
+                      <div className="relative w-full h-full">
+                        <Image
+                          src={urlFor(painting.image).width(500).height(400).url()}
+                          alt={painting.title || "Painting image"}
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          className="object-cover transition-transform duration-500 group-hover:scale-110"
+                          placeholder="blur"
+                          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFdQJhYUwl8wAAAABJRU5ErkJggg=="
+                        />
+                      </div>
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
                   ) : (
@@ -144,20 +158,32 @@ export default async function IndexPage() {
                   <div className="relative overflow-hidden rounded-lg shadow-md h-full">
                     {epoxy.mainImage ? (
                       <div className="relative h-64">
-                        <img
-                          src={urlFor(epoxy.mainImage).width(500).height(400).url()}
-                          alt={epoxy.title || "Epoxy project image"}
-                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                        />
+                        <div className="relative w-full h-full">
+                          <Image
+                            src={urlFor(epoxy.mainImage).width(500).height(400).url()}
+                            alt={epoxy.title || "Epoxy project image"}
+                            fill
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            className="object-cover transition-transform duration-500 group-hover:scale-110"
+                            placeholder="blur"
+                            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFdQJhYUwl8wAAAABJRU5ErkJggg=="
+                          />
+                        </div>
                         <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       </div>
                     ) : epoxy.image && epoxy.image.asset ? (
                       <div className="relative h-64">
-                        <img
-                          src={urlFor(epoxy.image).width(500).height(400).url()}
-                          alt={epoxy.title || "Epoxy project image"}
-                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                        />
+                        <div className="relative w-full h-full">
+                          <Image
+                            src={urlFor(epoxy.image).width(500).height(400).url()}
+                            alt={epoxy.title || "Epoxy project image"}
+                            fill
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            className="object-cover transition-transform duration-500 group-hover:scale-110"
+                            placeholder="blur"
+                            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFdQJhYUwl8wAAAABJRU5ErkJggg=="
+                          />
+                        </div>
                         <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       </div>
                     ) : (
