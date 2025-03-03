@@ -61,7 +61,7 @@ export default async function IndexPage() {
 
       {/* Hero Section - Fullscreen */}
       <section className="h-screen flex flex-col items-center justify-center p-10 bg-black">
-        <h1 className="text-6xl font-bold mb-6 text-center">EliteBrush Co.</h1>
+        <h1 className="text-6xl font-bold mb-6 text-center text-white">EliteBrush Co.</h1>
         <p className="text-2xl text-center mb-10" style={{
             color: 'white',
             textShadow: '0 0 13px white, 0 0 26px white, 0 0 39px white'
@@ -84,7 +84,7 @@ export default async function IndexPage() {
         <div className="max-w-6xl mx-auto w-full">
           <div className="flex justify-between items-end mb-10">
             <div>
-              <h2 className="text-3xl font-bold mb-2">Painting Projects</h2>
+              <h2 className="text-3xl font-bold mb-2 text-white">Painting Projects</h2>
               <div className="w-20 h-1 bg-red-500"></div>
             </div>
             <Link href="/paintings" className="text-red-500 hover:underline text-lg">View All</Link>
@@ -145,7 +145,7 @@ export default async function IndexPage() {
         <div className="max-w-6xl mx-auto w-full">
           <div className="flex justify-between items-end mb-10">
             <div>
-              <h2 className="text-3xl font-bold mb-2">Epoxy Projects</h2>
+              <h2 className="text-3xl font-bold mb-2 text-white">Epoxy Projects</h2>
               <div className="w-20 h-1 bg-red-500"></div>
             </div>
             <Link href="/epoxy" className="text-red-500 hover:underline text-lg">View All</Link>
@@ -204,7 +204,7 @@ export default async function IndexPage() {
       {/* Call-to-Action Section - Fullscreen */}
       <section className="h-screen flex flex-col items-center justify-center p-10 bg-black">
         <div className="max-w-3xl mx-auto text-center">
-          <h3 className="text-4xl font-bold mb-6">Ready to Transform Your Space?</h3>
+          <h3 className="text-4xl font-bold mb-6 text-white">Ready to Transform Your Space?</h3>
           <p className="text-xl mb-10 max-w-2xl mx-auto text-gray-300">
             Contact us today for a free quote on your next painting or epoxy project.
             We bring your vision to life with elite precision and craftsmanship.
