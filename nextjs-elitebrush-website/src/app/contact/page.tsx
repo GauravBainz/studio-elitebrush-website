@@ -22,7 +22,7 @@ export default function ContactPage() {
       </div>
       
       <section className="mt-16">
-        <h1 className="text-3xl font-bold mb-6 text-center">Contact Us</h1>
+        <h1 className="text-3xl font-bold mb-6 text-center text-white">Contact Us</h1>
         
         <div className="max-w-lg mx-auto bg-white rounded-lg shadow-md p-10">
           <form 
