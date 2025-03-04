@@ -21,9 +21,13 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: var(--my-font), sans-serif;
+  
 }
 
 html {
   font-family: var(--my-font), sans-serif;
 }
 
+html, body {
+  background-color: black;
+}
