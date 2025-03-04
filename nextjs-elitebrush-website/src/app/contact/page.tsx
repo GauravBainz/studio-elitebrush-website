@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function ContactPage() {
   return (
-    <main className="container mx-auto min-h-screen max-w-3xl p-0">
+    <main className="container mx-auto min-h-screen max-w-3xl p-0 bg-black">
       <div className="absolute top-4 left-4">
         <Link href="/">
           <span className="text-white hover:text-red-500 transition-all">
