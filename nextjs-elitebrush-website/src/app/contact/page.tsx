@@ -4,24 +4,22 @@ import Link from "next/link";
 export default function ContactPage() {
   return (
     <main className="container mx-auto min-h-screen max-w-3xl p-0 bg-black">
-      <div className="absolute top-4 left-4">
+      <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-4 flex justify-between items-center bg-black">
         <Link href="/">
           <span className="text-white hover:text-red-500 transition-all">
             EliteBrush Co.
           </span>
         </Link>
-      </div>
-
-      <div className="absolute top-4 right-4">
-        <Link 
-          href="/about" 
-          className="px-5 py-2 text-white rounded-md transition-all 
-                    hover:text-red-500 hover:text-shadow-lg">
-          Our Story
-        </Link>
-      </div>
+        <div className="flex space-x-6">
+          <Link
+            href="/about"
+            className="px-3 py-2 text-white transition-all hover:text-red-500">
+            Our Story
+          </Link>
+        </div>
+      </nav>
       
-      <section className="mt-16">
+      <section className="mt-20">
         <h1 className="text-3xl font-bold mb-6 text-center text-white">Contact Us</h1>
         
         <div className="max-w-lg mx-auto bg-white rounded-lg shadow-md p-10">
