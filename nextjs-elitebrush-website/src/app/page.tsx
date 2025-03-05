@@ -45,11 +45,11 @@ export default async function IndexPage() {
             EliteBrush Co.
           </span>
         </Link>
-        <div className="flex space-x-6">
+        <div className="flex space-x-4">
           <Link
             href="/about"
             className="px-3 py-2 text-white transition-all hover:text-red-500">
-            Our Story
+              About
           </Link>
           <Link
             href="/contact"

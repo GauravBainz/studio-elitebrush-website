@@ -14,7 +14,7 @@ export default function ContactPage() {
           <Link
             href="/about"
             className="px-3 py-2 text-white transition-all hover:text-red-500">
-            Our Story
+            About
           </Link>
         </div>
       </nav>
