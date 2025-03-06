@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-import { Orbitron } from "next/font/google";
+import { Kode_Mono } from "next/font/google";
 import "./globals.css";
 
-
-const myFont = Orbitron({
+const myFont = Kode_Mono({
   subsets: ["latin"],
-  weight: ['400', '500', '700'],
+  weight: ['400', '700'],
   variable: "--my-font",
 });
 
