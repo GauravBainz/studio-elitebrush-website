@@ -271,18 +271,19 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
         
         {/* Content */}
-        <div className="absolute bottom-0 left-0 p-8 w-full transition-all duration-300 group-hover:pb-12">
-          <h3 className="text-2xl font-bold text-white mb-2">Professional Painting</h3>
-          <p className="text-white/80 mb-4">Interior, exterior, residential & commercial painting solutions.</p>
-          <Link href="/paintings">
-            <span className="text-red-500 flex items-center opacity-0 -translate-y-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 cursor-pointer">
-              Explore Projects
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-              </svg>
-            </span>
-          </Link>
-        </div>
+        {/* Content */}
+      <div className="absolute bottom-0 left-0 p-8 w-full transition-all duration-300 group-hover:pb-12">
+        <h3 className="text-2xl font-bold text-white mb-2">Professional Painting</h3>
+        <p className="text-white/80 mb-4">Interior, exterior, residential & commercial painting solutions.</p>
+        <Link href="/paintings">
+          <span className="text-red-500 flex items-center md:opacity-0 md:-translate-y-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 cursor-pointer">
+            Explore Projects
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+            </svg>
+          </span>
+        </Link>
+      </div>
       </div>
       
       {/* Epoxy Flooring Card */}
@@ -299,18 +300,19 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
         
         {/* Content */}
-        <div className="absolute bottom-0 left-0 p-8 w-full transition-all duration-300 group-hover:pb-12">
-          <h3 className="text-2xl font-bold text-white mb-2">Epoxy Flooring</h3>
-          <p className="text-white/80 mb-4">Durable, beautiful epoxy solutions for garages, basements & more.</p>
-          <Link href="/epoxy">
-            <span className="text-red-500 flex items-center opacity-0 -translate-y-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 cursor-pointer">
-              Explore Projects
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-              </svg>
-            </span>
-          </Link>
-        </div>
+        {/* Content */}
+      <div className="absolute bottom-0 left-0 p-8 w-full transition-all duration-300 group-hover:pb-12">
+        <h3 className="text-2xl font-bold text-white mb-2">Epoxy Flooring</h3>
+        <p className="text-white/80 mb-4">Durable, beautiful epoxy solutions for garages, basements & more.</p>
+        <Link href="/epoxy">
+          <span className="text-red-500 flex items-center md:opacity-0 md:-translate-y-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 cursor-pointer">
+            Explore Projects
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+            </svg>
+          </span>
+        </Link>
+      </div>
       </div>
     </div>
   </div>
