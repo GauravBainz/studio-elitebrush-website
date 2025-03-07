@@ -78,6 +78,18 @@ export default function HomePage() {
               <div className="bg-black/60 backdrop-blur-lg rounded-full px-8 py-3 border border-gray-700/50">
                 <ul className="flex items-center space-x-10 text-white font-medium">
                 <li>
+                    <Link href="#about" className="relative group py-2 px-1">
+                      <span className="relative z-10 transition-colors group-hover:text-red-500">About</span>
+                      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-500 group-hover:w-full transition-all duration-300"></span>
+                    </Link>
+                </li>
+                <li>
+                    <Link href="#services" className="relative group py-2 px-1">
+                      <span className="relative z-10 transition-colors group-hover:text-red-500">Gallery</span>
+                      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-500 group-hover:w-full transition-all duration-300"></span>
+                    </Link>
+                </li>
+                <li>
                     <Link href="#painting" className="relative group py-2 px-1">
                       <span className="relative z-10 transition-colors group-hover:text-red-500">Painting</span>
                       <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-500 group-hover:w-full transition-all duration-300"></span>
@@ -92,12 +104,6 @@ export default function HomePage() {
                   <li>
                     <Link href="#contact" className="relative group py-2 px-1">
                       <span className="relative z-10 transition-colors group-hover:text-red-500">Contact</span>
-                      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-500 group-hover:w-full transition-all duration-300"></span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="#about" className="relative group py-2 px-1">
-                      <span className="relative z-10 transition-colors group-hover:text-red-500">About</span>
                       <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-500 group-hover:w-full transition-all duration-300"></span>
                     </Link>
                   </li>
@@ -127,10 +133,11 @@ export default function HomePage() {
         {mobileMenuOpen && (
           <div className="md:hidden bg-black/60 backdrop-blur-sm mx-10 mt-2 rounded-md">
             <ul className="flex flex-col space-y-4 px-4 py-4 text-white font-medium">
+              <li><Link href="#about" className="block hover:text-red-500 transition-colors" onClick={() => setMobileMenuOpen(false)}>About</Link></li>
+              <li><Link href="#services" className="block hover:text-red-500 transition-colors" onClick={() => setMobileMenuOpen(false)}>Gallery</Link></li>
               <li><Link href="#painting" className="block hover:text-red-500 transition-colors" onClick={() => setMobileMenuOpen(false)}>Painting</Link></li>
               <li><Link href="#epoxy" className="block hover:text-red-500 transition-colors" onClick={() => setMobileMenuOpen(false)}>Epoxy</Link></li>
               <li><Link href="#contact" className="block hover:text-red-500 transition-colors" onClick={() => setMobileMenuOpen(false)}>Contact</Link></li>
-              <li><Link href="#about" className="block hover:text-red-500 transition-colors" onClick={() => setMobileMenuOpen(false)}>About</Link></li>
             </ul>
           </div>
         )}
@@ -204,7 +211,7 @@ export default function HomePage() {
         </div>
         
         {/* Testimonial - below on mobile/iPad, overlapping on desktop */}
-        <div className="bg-white/10 backdrop-blur-md p-4 rounded-xl border border-white/20 shadow-xl w-full md:w-4/5 lg:w-auto lg:max-w-xs mt-6 md:mt-6 lg:mt-0 ml-auto mr-0 lg:absolute lg:-bottom-20 lg:-right-6">
+        <div className="bg-white/10 backdrop-blur-md p-4 rounded-xl border border-white/20 shadow-xl w-full md:w-4/5 lg:w-auto lg:max-w-s mt-6 md:mt-6 lg:mt-0 ml-auto mr-0 lg:absolute lg:-bottom-20 lg:-right-5">
           {/* 5-star rating */}
           <div className="flex mb-2">
             <svg className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
