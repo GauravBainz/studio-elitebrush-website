@@ -144,18 +144,20 @@ export default function HomePage() {
       </header>
 
       {/* Content Container - adjusted to account for fixed header */}
-      <div className="relative z-10 flex items-center min-h-screen pt-24 pl-10 md:pl-20">
-        <div className="text-left text-white max-w-2xl">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">Elevate Your Space With Elite Precision</h1>
-          <p className="text-xl md:text-2xl mb-8">Northern BC's Premier Painting and Epoxy Floors</p>
+      {/* Content Container - adjusted to account for fixed header */}
+    <div className="relative z-10 flex items-center justify-center md:justify-start min-h-screen pt-24 px-10 md:pl-20 md:pr-10">
+      <div className="text-white max-w-2xl">
+        <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight text-center md:text-left">Elevate Your Space With Elite Precision</h1>
+        <p className="text-xl md:text-2xl mb-8 text-center md:text-left">Northern BC's Premier Painting and Epoxy Floors</p>
+        <div className="flex justify-center md:justify-start">
           <Link href={"#contact"}>
-          <button className="bg-red-500 text-white px-8 py-4 rounded-md text-lg font-bold transition-all duration-300 shadow-[0_0_30px_rgba(239,68,68,0.7)] hover:bg-white hover:text-red-500 hover:shadow-[0_0_50px_rgba(255,255,255,0.9)]">
-            Transform Your Space Now!
-          </button>
+            <button className="bg-red-500 text-white px-8 py-4 rounded-md text-lg font-bold transition-all duration-300 shadow-[0_0_30px_rgba(239,68,68,0.7)] hover:bg-white hover:text-red-500 hover:shadow-[0_0_50px_rgba(255,255,255,0.9)]">
+              Transform Your Space Now!
+            </button>
           </Link>
         </div>
       </div>
-      
+    </div>
 
 
 
