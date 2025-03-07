@@ -127,10 +127,10 @@ export default function HomePage() {
         {mobileMenuOpen && (
           <div className="md:hidden bg-black/60 backdrop-blur-sm mx-10 mt-2 rounded-md">
             <ul className="flex flex-col space-y-4 px-4 py-4 text-white font-medium">
-              <li><Link href="/" className="block hover:text-red-500 transition-colors" onClick={() => setMobileMenuOpen(false)}>Home</Link></li>
-              <li><Link href="/about" className="block hover:text-red-500 transition-colors" onClick={() => setMobileMenuOpen(false)}>About</Link></li>
-              <li><Link href="/gallery" className="block hover:text-red-500 transition-colors" onClick={() => setMobileMenuOpen(false)}>Gallery</Link></li>
-              <li><Link href="/contact" className="block hover:text-red-500 transition-colors" onClick={() => setMobileMenuOpen(false)}>Contact</Link></li>
+              <li><Link href="#painting" className="block hover:text-red-500 transition-colors" onClick={() => setMobileMenuOpen(false)}>Painting</Link></li>
+              <li><Link href="#epoxy" className="block hover:text-red-500 transition-colors" onClick={() => setMobileMenuOpen(false)}>Epoxy</Link></li>
+              <li><Link href="#contact" className="block hover:text-red-500 transition-colors" onClick={() => setMobileMenuOpen(false)}>Contact</Link></li>
+              <li><Link href="#about" className="block hover:text-red-500 transition-colors" onClick={() => setMobileMenuOpen(false)}>About</Link></li>
             </ul>
           </div>
         )}
@@ -494,8 +494,28 @@ export default function HomePage() {
           </div>
         </div>
       </div>
-
+      
       {/* Testimonial 2 */}
+      <div className="bg-gradient-to-br from-black/50 to-black/30 backdrop-blur-sm p-8 rounded-xl border border-white/10 relative md:max-w-md">
+        <div className="absolute -top-6 -left-6">
+          <div className="w-12 h-12 flex items-center justify-center bg-red-500 rounded-full">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+            </svg>
+          </div>
+        </div>
+        <div className="text-white mb-6">
+          <p className="italic">"We really appreciate the fast turnaround and quality work! Thank You!"</p>
+        </div>
+        <div className="flex items-center">
+          <div>
+            <p className="text-white font-medium">Cobra Auto</p>
+            <p className="text-white/60 text-sm">Commercial Client</p>
+          </div>
+        </div>
+      </div>
+
+
       <div className="bg-gradient-to-br from-black/50 to-black/30 backdrop-blur-sm p-8 rounded-xl border border-white/10 relative md:max-w-md">
         <div className="absolute -top-6 -left-6">
           <div className="w-12 h-12 flex items-center justify-center bg-red-500 rounded-full">
@@ -514,6 +534,7 @@ export default function HomePage() {
           </div>
         </div>
       </div>
+      
     </div>
     
     {/* Reviews Summary */}
@@ -571,16 +592,18 @@ export default function HomePage() {
       <p className="text-xl text-center text-white/80 mb-10">Get a free, no-obligation quote for your project</p>
       
       <div className="grid md:grid-cols-2 gap-10">
-        {/* Contact Form */}
+        {/* Contact Form with Formspree */}
         <div>
-          <form className="space-y-6">
+          <form action="https://formspree.io/f/mwpvgwqq" method="POST" className="space-y-6">
             <div>
               <label htmlFor="name" className="block text-white text-sm font-medium mb-2">Your Name</label>
               <input
                 type="text"
                 id="name"
+                name="name"
                 className="w-full bg-white/10 border border-white/20 rounded-lg py-3 px-4 text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-red-500"
                 placeholder="John Smith"
+                required
               />
             </div>
             
@@ -589,8 +612,10 @@ export default function HomePage() {
               <input
                 type="email"
                 id="email"
+                name="email"
                 className="w-full bg-white/10 border border-white/20 rounded-lg py-3 px-4 text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-red-500"
                 placeholder="john@example.com"
+                required
               />
             </div>
             
@@ -599,8 +624,10 @@ export default function HomePage() {
               <input
                 type="tel"
                 id="phone"
+                name="phone"
                 className="w-full bg-white/10 border border-white/20 rounded-lg py-3 px-4 text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-red-500"
                 placeholder="(555) 123-4567"
+                required
               />
             </div>
             
@@ -608,14 +635,13 @@ export default function HomePage() {
               <label htmlFor="service" className="block text-white text-sm font-medium mb-2">Service Needed</label>
               <select
                 id="service"
+                name="service"
                 className="w-full bg-white/10 border border-white/20 rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-red-500"
+                required
               >
                 <option value="" className="bg-gray-800">Select a service</option>
-                <option value="kitchen" className="bg-gray-800">Kitchen Remodeling</option>
-                <option value="bathroom" className="bg-gray-800">Bathroom Renovation</option>
-                <option value="flooring" className="bg-gray-800">Flooring Installation</option>
-                <option value="painting" className="bg-gray-800">Interior Painting</option>
-                <option value="custom" className="bg-gray-800">Custom Project</option>
+                <option value="epoxy" className="bg-gray-800">Epoxy</option>
+                <option value="painting" className="bg-gray-800">Painting</option>
               </select>
             </div>
             
@@ -623,8 +649,10 @@ export default function HomePage() {
               <label htmlFor="message" className="block text-white text-sm font-medium mb-2">Project Details</label>
               <textarea
                 id="message"
+                name="message"
                 className="w-full bg-white/10 border border-white/20 rounded-lg py-3 px-4 text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-red-500"
                 placeholder="Tell us about your project..."
+                required
               ></textarea>
             </div>
             
@@ -637,7 +665,7 @@ export default function HomePage() {
           </form>
         </div>
         
-        {/* Contact Information */}
+        {/* Contact Information with Clickable Elements */}
         <div className="flex flex-col justify-between">
           <div>
             <h3 className="text-2xl font-bold text-white mb-6">Contact Information</h3>
@@ -651,7 +679,14 @@ export default function HomePage() {
                 </div>
                 <div>
                   <p className="text-white font-medium">Address</p>
-                  <p className="text-white/70">Prince George, BC</p>
+                  <a 
+                    href="https://maps.google.com/?q=Prince+George,+BC" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="text-white/70 hover:text-white transition-colors"
+                  >
+                    Prince George, BC
+                  </a>
                 </div>
               </div>
               
@@ -663,8 +698,18 @@ export default function HomePage() {
                 </div>
                 <div>
                   <p className="text-white font-medium">Phone</p>
-                  <p className="text-white/70">(250) 640-5402</p>
-                  <p className="text-white/70">(778) 281-0166</p>
+                  <a 
+                    href="tel:+12506405402" 
+                    className="block text-white/70 hover:text-white transition-colors"
+                  >
+                    (250) 640-5402
+                  </a>
+                  <a 
+                    href="tel:+17782810166" 
+                    className="block text-white/70 hover:text-white transition-colors"
+                  >
+                    (778) 281-0166
+                  </a>
                 </div>
               </div>
               
@@ -677,7 +722,12 @@ export default function HomePage() {
                 </div>
                 <div>
                   <p className="text-white font-medium">Email</p>
-                  <p className="text-white/70">elitebrushco@gmail.com</p>
+                  <a 
+                    href="mailto:elitebrushco@gmail.com" 
+                    className="text-white/70 hover:text-white transition-colors"
+                  >
+                    elitebrushco@gmail.com
+                  </a>
                 </div>
               </div>
             </div>
@@ -697,7 +747,6 @@ export default function HomePage() {
     </div>
   </div>
 </section>
-
 
 
 

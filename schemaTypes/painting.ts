@@ -103,7 +103,47 @@ export const painting = defineType({
       type: 'array',
       of: [{type: 'block'}],
     }),
+
+    defineField({
+      name: 'beforeAfterImages',
+      title: 'Before/After Images',
+      description: 'Upload before and after images for comparison',
+      type: 'object',
+      fields: [
+        {
+          name: 'before',
+          title: 'Before Image',
+          type: 'image',
+          options: {
+            hotspot: true,
+          },
+          fields: [
+            {
+              name: 'alt',
+              type: 'string',
+              title: 'Alternative Text',
+            }
+          ]
+        },
+        {
+          name: 'after',
+          title: 'After Image',
+          type: 'image',
+          options: {
+            hotspot: true,
+          },
+          fields: [
+            {
+              name: 'alt',
+              type: 'string',
+              title: 'Alternative Text',
+            }
+          ]
+        }
+      ]
+    }),
   ],
+  
   preview: {
     select: {
       title: 'title',

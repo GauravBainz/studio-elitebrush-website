@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 
@@ -55,7 +57,7 @@ const BeforeAfterSlider = ({ beforeImage, afterImage }) => {
             <div className="w-3 h-3 bg-black rounded-full mr-2"></div>
             <span>BEFORE</span>
           </div>
-          <div className="text-sm">DRAG SLIDER TO COMPARE</div>
+          <div className="text-sm">DRAG SLIDER</div>
           <div className="flex items-center">
             <span>AFTER</span>
             <div className="w-3 h-3 bg-red-500 rounded-full ml-2"></div>
