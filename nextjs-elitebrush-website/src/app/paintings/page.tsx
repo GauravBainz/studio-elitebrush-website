@@ -105,12 +105,7 @@ export default async function PaintingsPage() {
         <div className="container mx-auto px-6 md:px-10">
           <div className="max-w-7xl mx-auto w-full">
             <div className="flex items-center mb-8">
-              <Link href="/" className="text-white/80 hover:text-white flex items-center mr-4">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" className="mr-2">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 17l-5-5m0 0l5-5m-5 5h12" />
-                </svg>
-                Home
-              </Link>
+            
             </div>
             <h1 className="text-4xl font-bold text-white mb-4">Before & After Transformations</h1>
             <div className="w-20 h-1 bg-white mb-6"></div>
