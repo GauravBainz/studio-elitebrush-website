@@ -42,7 +42,7 @@ export default function HomePage() {
               transformOrigin: "center center"
             }}
           >
-            <source src="/videos/background-vid-V3.mp4" type="video/mp4" />
+            <source src="/videos/background-vid-V2.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>
