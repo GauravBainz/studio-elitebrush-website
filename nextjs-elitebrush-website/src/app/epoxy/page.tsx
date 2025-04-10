@@ -9,13 +9,14 @@ import BeforeAfterSlider from "@/app/components/BeforeAfterSlider";
 const EPOXY_QUERY = `*[
   _type == "epoxy"
   && defined(slug.current)
+  && defined(mainImage.beforeAfterImages)
 ]|order(orderRank desc){
   _id, 
   title, 
   slug, 
   publishedAt, 
   body,
-  beforeAfterImages {
+  "beforeAfterImages": mainImage.beforeAfterImages {
     before {
       asset->{
         _id,
@@ -99,12 +100,12 @@ export default async function EpoxyPage() {
         </div>
       </nav>
 
-      {/* Hero Section */}
+      {/* Hero Section - Now just use the same gradient as the main background */}
       <section className="relative z-10 pt-32 pb-12">
         <div className="container mx-auto px-6 md:px-10">
           <div className="max-w-7xl mx-auto w-full">
             <div className="flex items-center mb-8">
-              
+            
             </div>
             <h1 className="text-4xl font-bold text-white mb-4">Before & After Epoxy Transformations</h1>
             <div className="w-20 h-1 bg-white mb-6"></div>
@@ -133,13 +134,13 @@ export default async function EpoxyPage() {
             </div>
           ) : (
             <div className="text-center text-white text-xl">
-              Coming Soon! Stay Tuned!
+              No before/after transformations found.
             </div>
           )}
         </div>
       </section>
 
-      {/* Call-to-Action */}
+      {/* Call-to-Action - Keep consistent with the gradient theme */}
       <section className="relative z-10 py-20">
         <div className="container mx-auto px-6 md:px-10">
           <div className="max-w-5xl mx-auto bg-black/40 backdrop-blur-lg p-8 md:p-12 border border-white/10">
