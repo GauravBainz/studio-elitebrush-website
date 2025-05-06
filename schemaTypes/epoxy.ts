@@ -5,13 +5,15 @@ export const epoxy = defineType({
   name: 'epoxy',
   title: 'Epoxy',
   type: 'document',
+  // Add ordering configuration
   orderings: [orderRankOrdering],
   fields: [
+    // Add orderRank field for document sorting
     orderRankField({ type: 'epoxy' }),
     defineField({
       name: 'title',
       type: 'string',
-      validation: (rule) => rule.required(),
+      validation: (rule) => rule.required().min(1),
     }),
     defineField({
       name: 'slug',
@@ -20,90 +22,15 @@ export const epoxy = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'publishedAt',
-      type: 'datetime',
-      initialValue: () => new Date().toISOString(),
-      validation: (rule) => rule.required(),
-    }),
-    defineField({
-      name: 'mainImage',
-      title: 'Main Image',
-      description: 'This will be used as the thumbnail and contain the before/after images',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
-      fields: [
-        {
-          name: 'alt',
-          type: 'string',
-          title: 'Alternative Text',
-          description: 'Important for SEO and accessibility',
-        },
-        {
-          name: 'tag',
-          type: 'string',
-          title: 'Image Tag',
-          description: 'Tag to display (e.g., BEFORE, AFTER)',
-          options: {
-            list: [
-              {title: 'Before', value: 'BEFORE'},
-              {title: 'After', value: 'AFTER'},
-              {title: 'None', value: ''}
-            ]
-          }
-        },
-        defineField({
-          name: 'beforeAfterImages',
-          title: 'Before/After Images',
-          description: 'Upload before and after images for comparison',
-          type: 'object',
-          fields: [
-            {
-              name: 'before',
-              title: 'Before Image',
-              type: 'image',
-              options: {
-                hotspot: true,
-              },
-              fields: [
-                {
-                  name: 'alt',
-                  type: 'string',
-                  title: 'Alternative Text',
-                }
-              ]
-            },
-            {
-              name: 'after',
-              title: 'After Image',
-              type: 'image',
-              options: {
-                hotspot: true,
-              },
-              fields: [
-                {
-                  name: 'alt',
-                  type: 'string',
-                  title: 'Alternative Text',
-                }
-              ]
-            }
-          ]
-        }),
-      ],
-      validation: (rule) => rule.required(),
-    }),
-    defineField({
-      name: 'images',
-      title: 'Professional Showcase Images',
-      description: 'Add high-quality professional images of the finished project',
+      name: 'mainImages',
+      title: 'Main Images',
+      description: 'Upload multiple images. The first image will be used as the thumbnail.',
       type: 'array',
       of: [
         {
           type: 'image',
           options: {
-            hotspot: true,
+            hotspot: true, // Enables the hotspot functionality for responsive cropping
           },
           fields: [
             {
@@ -116,14 +43,55 @@ export const epoxy = defineType({
               name: 'caption',
               type: 'string',
               title: 'Caption',
-              description: 'Optional description or detail about this specific view'
+              description: 'Optional caption for this image',
+            }
+          ],
+        }
+      ],
+      validation: (rule) => rule.required().min(1),
+    }),
+    defineField({
+      name: 'beforeAfterImages',
+      title: 'Before/After Images',
+      description: 'Upload before and after images for comparison',
+      type: 'object',
+      fields: [
+        {
+          name: 'before',
+          title: 'Before Image',
+          type: 'image',
+          options: {
+            hotspot: true,
+          },
+          fields: [
+            {
+              name: 'alt',
+              type: 'string',
+              title: 'Alternative Text',
+            }
+          ]
+        },
+        {
+          name: 'after',
+          title: 'After Image',
+          type: 'image',
+          options: {
+            hotspot: true,
+          },
+          fields: [
+            {
+              name: 'alt',
+              type: 'string',
+              title: 'Alternative Text',
             }
           ]
         }
-      ],
-      options: {
-        layout: 'grid',
-      },
+      ]
+    }),
+    defineField({
+      name: 'publishedAt',
+      type: 'datetime',
+      initialValue: () => new Date().toISOString(),
     }),
     defineField({
       name: 'body',
@@ -133,10 +101,11 @@ export const epoxy = defineType({
       of: [{type: 'block'}],
     }),
   ],
+  
   preview: {
     select: {
       title: 'title',
-      media: 'mainImage',
+      media: 'mainImages.0', // Use the first image as the preview thumbnail
     },
   },
 })
