@@ -28,10 +28,10 @@ export const epoxy = defineType({
     defineField({
       name: 'mainImage',
       title: 'Main Image',
-      description: 'This will be used as the thumbnail and first carousel image',
+      description: 'This will be used as the thumbnail and contain the before/after images',
       type: 'image',
       options: {
-        hotspot: true, // Enables the hotspot functionality for responsive cropping
+        hotspot: true,
       },
       fields: [
         {
@@ -96,8 +96,8 @@ export const epoxy = defineType({
     }),
     defineField({
       name: 'images',
-      title: 'Additional Images',
-      description: 'Add multiple images for the carousel',
+      title: 'Professional Showcase Images',
+      description: 'Add high-quality professional images of the finished project',
       type: 'array',
       of: [
         {
@@ -113,17 +113,10 @@ export const epoxy = defineType({
               description: 'Important for SEO and accessibility',
             },
             {
-              name: 'tag',
+              name: 'caption',
               type: 'string',
-              title: 'Image Tag',
-              description: 'Tag to display (e.g., BEFORE, AFTER)',
-              options: {
-                list: [
-                  {title: 'Before', value: 'BEFORE'},
-                  {title: 'After', value: 'AFTER'},
-                  {title: 'None', value: ''}
-                ]
-              }
+              title: 'Caption',
+              description: 'Optional description or detail about this specific view'
             }
           ]
         }
@@ -134,7 +127,9 @@ export const epoxy = defineType({
     }),
     defineField({
       name: 'body',
+      title: 'Project Description',
       type: 'array',
+      description: 'Add details about the project, techniques used, or client testimonials',
       of: [{type: 'block'}],
     }),
   ],

@@ -13,7 +13,7 @@ export const painting = defineType({
     defineField({
       name: 'title',
       type: 'string',
-      validation: (rule) => rule.required(),
+      validation: (rule) => rule.required().min(1),
     }),
     // ... rest of your fields
     defineField({
@@ -23,52 +23,15 @@ export const painting = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'publishedAt',
-      type: 'datetime',
-      initialValue: () => new Date().toISOString(),
-      validation: (rule) => rule.required(),
-    }),
-    defineField({
-      name: 'mainImage',
-      title: 'Main Image',
-      description: 'This will be used as the thumbnail and first carousel image',
-      type: 'image',
-      options: {
-        hotspot: true, // Enables the hotspot functionality for responsive cropping
-      },
-      fields: [
-        {
-          name: 'alt',
-          type: 'string',
-          title: 'Alternative Text',
-          description: 'Important for SEO and accessibility',
-        },
-        {
-          name: 'tag',
-          type: 'string',
-          title: 'Image Tag',
-          description: 'Tag to display (e.g., BEFORE, AFTER)',
-          options: {
-            list: [
-              {title: 'Before', value: 'BEFORE'},
-              {title: 'After', value: 'AFTER'},
-              {title: 'None', value: ''}
-            ]
-          }
-        }
-      ],
-      validation: (rule) => rule.required(),
-    }),
-    defineField({
-      name: 'images',
-      title: 'Additional Images',
-      description: 'Add multiple images for the carousel',
+      name: 'mainImages',
+      title: 'Main Images',
+      description: 'Upload multiple images. The first image will be used as the thumbnail.',
       type: 'array',
       of: [
         {
           type: 'image',
           options: {
-            hotspot: true,
+            hotspot: true, // Enables the hotspot functionality for responsive cropping
           },
           fields: [
             {
@@ -78,32 +41,16 @@ export const painting = defineType({
               description: 'Important for SEO and accessibility',
             },
             {
-              name: 'tag',
+              name: 'caption',
               type: 'string',
-              title: 'Image Tag',
-              description: 'Tag to display (e.g., BEFORE, AFTER)',
-              options: {
-                list: [
-                  {title: 'Before', value: 'BEFORE'},
-                  {title: 'After', value: 'AFTER'},
-                  {title: 'None', value: ''}
-                ]
-              }
+              title: 'Caption',
+              description: 'Optional caption for this image',
             }
-          ]
+          ],
         }
       ],
-      options: {
-        layout: 'grid',
-        sortable: true, // Enable drag-and-drop reordering for array items
-      },
+      validation: (rule) => rule.required().min(1),
     }),
-    defineField({
-      name: 'body',
-      type: 'array',
-      of: [{type: 'block'}],
-    }),
-
     defineField({
       name: 'beforeAfterImages',
       title: 'Before/After Images',
@@ -147,7 +94,7 @@ export const painting = defineType({
   preview: {
     select: {
       title: 'title',
-      media: 'mainImage',
+      media: 'mainImages.0', // Use the first image as the preview thumbnail
     },
   },
 })

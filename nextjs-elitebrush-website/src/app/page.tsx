@@ -31,20 +31,21 @@ export default function HomePage() {
       <div className="fixed inset-0">
         {/* Full-screen video background with position adjustment */}
         <div className="h-full w-full overflow-hidden">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="object-cover w-full h-full"
-            style={{ 
-              transform: "scale(1.15) translateY(2%)", 
-              transformOrigin: "center center"
-            }}
-          >
-            <source src="/videos/background-vid-v4.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          className="object-cover w-full h-full"
+          style={{ 
+            transform: "scale(1.15) translateY(2%)", 
+            transformOrigin: "center center"
+          }}
+        >
+          <source src="/videos/background-vid-v4.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
         </div>
         
         {/* Optional overlay to darken the video */}
