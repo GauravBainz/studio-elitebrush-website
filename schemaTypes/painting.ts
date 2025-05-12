@@ -49,7 +49,6 @@ export const painting = defineType({
           ],
         }
       ],
-      validation: (rule) => rule.required().min(1),
     }),
     defineField({
       name: 'beforeAfterImages',
