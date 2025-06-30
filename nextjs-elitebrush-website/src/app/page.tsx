@@ -290,7 +290,7 @@ export default function HomePage() {
       <div className="group relative overflow-hidden rounded-xl h-80">
         {/* Background Image */}
         <Image
-          src="/images/garage.png"
+          src="/images/HubertMetallic.JPG"
           alt="Epoxy Flooring Services"
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-110"

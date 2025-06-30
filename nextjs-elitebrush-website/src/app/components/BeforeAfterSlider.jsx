@@ -3,13 +3,13 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 
-const BeforeAfterSlider = ({ beforeImage, afterImage }) => {
-  const [sliderPosition, setSliderPosition] = useState(50); // Back to middle
+const BeforeAfterSlider = ({ beforeImage, afterImage, className = '' }) => {
+  const [sliderPosition, setSliderPosition] = useState(50);
   const containerRef = useRef(null);
   const isDragging = useRef(false);
 
   const handleMouseDown = (e) => {
-    e.preventDefault(); // Prevent text selection
+    e.preventDefault();
     isDragging.current = true;
   };
 
@@ -28,7 +28,6 @@ const BeforeAfterSlider = ({ beforeImage, afterImage }) => {
   };
 
   const handleTouchMove = (e) => {
-    // Prevent default behavior to stop browser scrolling/panning
     e.preventDefault();
     
     if (!containerRef.current) return;
@@ -41,60 +40,86 @@ const BeforeAfterSlider = ({ beforeImage, afterImage }) => {
     setSliderPosition(percentage);
   };
 
+  const handleTouchStart = (e) => {
+    e.preventDefault();
+    isDragging.current = true;
+  };
+
+  const handleTouchEnd = () => {
+    isDragging.current = false;
+  };
+
   useEffect(() => {
-    document.addEventListener('mouseup', handleMouseUp);
-    document.addEventListener('mousemove', handleMouseMove);
-    
-    // Prevent page scrolling when touching the slider area
+    const handleGlobalMouseUp = () => {
+      isDragging.current = false;
+    };
+
+    const handleGlobalMouseMove = (e) => {
+      if (!isDragging.current || !containerRef.current) return;
+      
+      const rect = containerRef.current.getBoundingClientRect();
+      const x = Math.max(0, Math.min(e.clientX - rect.left, rect.width));
+      const percentage = Math.max(0, Math.min(100, (x / rect.width) * 100));
+      
+      setSliderPosition(percentage);
+    };
+
     const preventScroll = (e) => {
       if (containerRef.current && containerRef.current.contains(e.target)) {
         e.preventDefault();
       }
     };
-    
-    // Add passive: false to ensure preventDefault works
+
+    document.addEventListener('mouseup', handleGlobalMouseUp);
+    document.addEventListener('mousemove', handleGlobalMouseMove);
     document.addEventListener('touchmove', preventScroll, { passive: false });
     
     return () => {
-      document.removeEventListener('mouseup', handleMouseUp);
-      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleGlobalMouseUp);
+      document.removeEventListener('mousemove', handleGlobalMouseMove);
       document.removeEventListener('touchmove', preventScroll);
     };
   }, []);
 
   return (
-    <div className="relative">
-      {/* Instruction banner */}
-      <div className="text-center mb-4">
-        <div className="flex justify-between items-center px-4 py-2 bg-black/40 rounded-lg text-white font-medium">
-          <div className="flex items-center">
-            
-          </div>
-          <div className="text-sm">DRAG SLIDER</div>
-          
+    <div className={`relative w-full max-w-2xl mx-auto ${className}`}>
+      {/* Instruction banner - more compact for mobile */}
+      <div className="text-center mb-3">
+        <div className="inline-flex items-center px-3 py-1.5 bg-black/50 rounded-md text-white text-xs font-medium backdrop-blur-sm">
+          <span>DRAG SLIDER</span>
         </div>
       </div>
       
       <div 
         ref={containerRef}
-        className="relative h-96 rounded-lg overflow-hidden cursor-col-resize select-none touch-none"
+        className="relative w-full rounded-xl overflow-hidden cursor-col-resize select-none touch-none shadow-2xl"
         onMouseDown={handleMouseDown}
         onTouchMove={handleTouchMove}
-        onTouchStart={(e) => {e.preventDefault(); isDragging.current = true;}}
-        onTouchEnd={() => isDragging.current = false}
-        style={{ userSelect: 'none', WebkitUserSelect: 'none', touchAction: 'none' }}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+        style={{ 
+          userSelect: 'none', 
+          WebkitUserSelect: 'none', 
+          touchAction: 'none',
+          aspectRatio: '4/3', // iPhone photo aspect ratio
+          maxHeight: '80vh' // Prevent oversized images on smaller screens
+        }}
       >
         {/* After image (bottom layer) */}
         <div className="absolute inset-0 select-none">
           <Image
             src={afterImage}
-            alt="After"
+            alt="After comparison"
             fill
             className="object-cover select-none"
             priority
             draggable="false"
+            sizes="(max-width: 480px) 100vw, (max-width: 768px) 80vw, 50vw"
+            quality={85}
           />
-          <div className="absolute bottom-4 right-4 bg-red-500/70 px-3 py-1 rounded text-white text-sm font-medium">AFTER</div>
+          <div className="absolute bottom-2 right-2 bg-red-500/90 px-2 py-1 rounded text-white text-xs font-semibold shadow-lg backdrop-blur-sm">
+            AFTER
+          </div>
         </div>
         
         {/* Before image with clip path (top layer) */}
@@ -106,27 +131,51 @@ const BeforeAfterSlider = ({ beforeImage, afterImage }) => {
         >
           <Image
             src={beforeImage}
-            alt="Before"
+            alt="Before comparison"
             fill
             className="object-cover select-none"
             priority
             draggable="false"
+            sizes="(max-width: 480px) 100vw, (max-width: 768px) 80vw, 50vw"
+            quality={85}
           />
-          <div className="absolute bottom-4 left-4 bg-black/70 px-3 py-1 rounded text-white text-sm font-medium">BEFORE</div>
+          <div className="absolute bottom-2 left-2 bg-black/90 px-2 py-1 rounded text-white text-xs font-semibold shadow-lg backdrop-blur-sm">
+            BEFORE
+          </div>
         </div>
         
-        {/* Slider control - modified to be at the bottom */}
+        {/* Slider control - optimized for touch */}
         <div 
-          className="absolute top-0 bottom-0 w-1 bg-white shadow-lg z-10"
+          className="absolute top-0 bottom-0 w-0.5 bg-white shadow-2xl z-10"
           style={{ left: `${sliderPosition}%` }}
         >
-          {/* Circle control moved to bottom (80% from top) */}
-          <div className="absolute top-4/5 bottom-16 -translate-y-1/2 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-white shadow-lg flex items-center justify-center">
-            <div className="w-6 h-6 flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          {/* Circle control - larger for better touch interaction */}
+          <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-white shadow-2xl border-2 border-gray-100 flex items-center justify-center hover:scale-105 active:scale-95 transition-transform duration-150">
+            <div className="w-6 h-6 flex items-center justify-center text-gray-700">
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                width="12" 
+                height="12" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                strokeWidth="2.5" 
+                strokeLinecap="round" 
+                strokeLinejoin="round"
+              >
                 <polyline points="15 18 9 12 15 6"></polyline>
               </svg>
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                width="12" 
+                height="12" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                strokeWidth="2.5" 
+                strokeLinecap="round" 
+                strokeLinejoin="round"
+              >
                 <polyline points="9 18 15 12 9 6"></polyline>
               </svg>
             </div>
