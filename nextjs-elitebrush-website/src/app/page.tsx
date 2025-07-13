@@ -179,7 +179,7 @@ export default function HomePage() {
         <div className="flex space-x-6">
           {/* Stats */}
           <div>
-            <p className="text-red-500 text-3xl font-bold">25+</p>
+            <p className="text-red-500 text-3xl font-bold">50+</p>
             <p className="text-sm">Projects Completed</p>
           </div>
           <div>
