@@ -5,11 +5,86 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import BeforeAfterSlider from "./components/BeforeAfterSlider";
 
+
 export default function HomePage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
+
+  const [currentReview, setCurrentReview] = useState(0);
   
+  const testimonials = [
+    {
+      text: "Elite Brush is our go-to for painting and epoxy. Their work is clean, professional, and always on schedule. Clients are impressed, and so are we.",
+      name: "Sunny Kullar",
+      role: "Kullar Homes"
+    },
+    {
+      text: "Gaurav and his team did an exceptional job. I was happy with his patience and detailed quote. They were flexible with my schedule and got the job done on a timely manner to get my project ready. I will definitely be working with Elitebrush Co moving forward. Thank guys!",
+      name: "Mehtab Bal",
+      role: "Residential Client"
+    },
+    {
+      text: "The job you two did was an awesome job 5 out 5 I will get you two back to do some more painting very soon thank-you for the beautiful work you two did!",
+      name: "Bonnie",
+      role: "Residential Client"
+    },
+    {
+      text: "Kavan did an incredible job repainting our exterior stucco. I was shocked by how quickly his team completed the job, and how accommodating they were throughout. If you’re looking for a trustworthy and highly professional painting company, I would recommend Elite Brush Co!",
+      name: "Tori Fisher",
+      role: "Residential Client"
+    },
+    {
+      text: "We really appreciate the fast turnaround and quality work! Thank You!",
+      name: "Cobra Auto",
+      role: "Commercial Client"
+    }
+  ];
+
+
+
+  const [currentPage, setCurrentPage] = useState(0);
+    const reviewsPerPage = 3;
+
+    // Navigation functions
+    const nextPage = () => {
+      const maxPage = Math.ceil(testimonials.length / reviewsPerPage) - 1;
+      setCurrentPage((prev) => (prev + 1) % (maxPage + 1));
+    };
+
+    const prevPage = () => {
+      const maxPage = Math.ceil(testimonials.length / reviewsPerPage) - 1;
+      setCurrentPage((prev) => (prev - 1 + maxPage + 1) % (maxPage + 1));
+    };
+
+    // Get current reviews to display
+    const getCurrentReviews = () => {
+      const startIndex = currentPage * reviewsPerPage;
+      return testimonials.slice(startIndex, startIndex + reviewsPerPage);
+    };
+
+    // Optional: Auto-advance pages
+    useEffect(() => {
+      const maxPage = Math.ceil(testimonials.length / reviewsPerPage) - 1;
+      const interval = setInterval(() => {
+        setCurrentPage((prev) => (prev + 1) % (maxPage + 1));
+      }, 8000); // Longer interval since showing 3 reviews
+      return () => clearInterval(interval);
+    }, [testimonials.length]);
+
+
+
+
+
+
+  // Navigation functions
+  const nextReview = () => {
+    setCurrentReview((prev) => (prev + 1) % testimonials.length);
+  };
+
+  const prevReview = () => {
+    setCurrentReview((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  };
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollPos = window.scrollY;
@@ -502,14 +577,14 @@ export default function HomePage() {
 
 
 
+
 <section id="testimonials" className="relative z-10 py-20 bg-gradient-to-b from-red-500/90 to-black/90">
   <div className="container mx-auto px-6 md:px-10">
     <h2 className="text-4xl font-bold text-center text-white mb-16">What Our Clients Say</h2>
     
-    {/* Testimonial Cards */}
-    <div className="flex flex-col md:flex-row justify-center gap-8 max-w-6xl mx-auto">
-      {/* Testimonial 1 */}
-      <div className="bg-gradient-to-br from-black/50 to-black/30 backdrop-blur-sm p-8 rounded-xl border border-white/10 relative md:max-w-md">
+    {/* Single Review Display */}
+    <div className="max-w-4xl mx-auto relative">
+      <div className="bg-gradient-to-br from-black/50 to-black/30 backdrop-blur-sm p-8 md:p-12 rounded-xl border border-white/10 relative min-h-[300px] flex flex-col justify-center">
         <div className="absolute -top-6 -left-6">
           <div className="w-12 h-12 flex items-center justify-center bg-red-500 rounded-full">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="currentColor" viewBox="0 0 24 24">
@@ -517,78 +592,68 @@ export default function HomePage() {
             </svg>
           </div>
         </div>
-        <div className="text-white mb-6">
-          <p className="italic">"Elite Brush Co. was fantastic! They arrived on time, worked quickly, and did an amazing job. Our space looks beautiful—highly recommend their services!"</p>
+        
+        <div className="text-white mb-8 text-center">
+          <p className="italic text-lg md:text-xl leading-relaxed">"{testimonials[currentReview].text}"</p>
         </div>
-        <div className="flex items-center">
-          <div>
-            <p className="text-white font-medium">Sunny Kullar</p>
-            <p className="text-white/60 text-sm">Residential Client</p>
-          </div>
+        
+        <div className="text-center">
+          <p className="text-white font-medium text-lg">{testimonials[currentReview].name}</p>
+          <p className="text-white/60">{testimonials[currentReview].role}</p>
         </div>
       </div>
       
-      {/* Testimonial 2 */}
-      <div className="bg-gradient-to-br from-black/50 to-black/30 backdrop-blur-sm p-8 rounded-xl border border-white/10 relative md:max-w-md">
-        <div className="absolute -top-6 -left-6">
-          <div className="w-12 h-12 flex items-center justify-center bg-red-500 rounded-full">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-            </svg>
-          </div>
-        </div>
-        <div className="text-white mb-6">
-          <p className="italic">"We really appreciate the fast turnaround and quality work! Thank You!"</p>
-        </div>
-        <div className="flex items-center">
-          <div>
-            <p className="text-white font-medium">Cobra Auto</p>
-            <p className="text-white/60 text-sm">Commercial Client</p>
-          </div>
-        </div>
-      </div>
-
-
-      <div className="bg-gradient-to-br from-black/50 to-black/30 backdrop-blur-sm p-8 rounded-xl border border-white/10 relative md:max-w-md">
-        <div className="absolute -top-6 -left-6">
-          <div className="w-12 h-12 flex items-center justify-center bg-red-500 rounded-full">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-            </svg>
-          </div>
-        </div>
-        <div className="text-white mb-6">
-          <p className="italic">"The job you two did was an awesome job 5 out 5 I will get you two back to do some more painting very soon thank-you for the beautiful work you two did!"</p>
-        </div>
-        <div className="flex items-center">
-          <div>
-            <p className="text-white font-medium">Bonnie</p>
-            <p className="text-white/60 text-sm">Residential Client</p>
-          </div>
-        </div>
-      </div>
+      {/* Navigation Arrows */}
+      <button
+        onClick={prevReview}
+        className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full backdrop-blur-sm border border-white/10 transition-all duration-300"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
       
+      <button
+        onClick={nextReview}
+        className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full backdrop-blur-sm border border-white/10 transition-all duration-300"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+    </div>
+    
+    {/* Dot Indicators */}
+    <div className="flex justify-center mt-8 space-x-2">
+      {testimonials.map((_, index) => (
+        <button
+          key={index}
+          onClick={() => setCurrentReview(index)}
+          className={`w-3 h-3 rounded-full transition-all duration-300 ${
+            currentReview === index 
+              ? 'bg-red-500' 
+              : 'bg-white/30 hover:bg-white/50'
+          }`}
+        />
+      ))}
+    </div>
+    
+    {/* Review Counter */}
+    <div className="text-center mt-4">
+      <p className="text-white/60 text-sm">
+        {currentReview + 1} of {testimonials.length}
+      </p>
     </div>
     
     {/* Reviews Summary */}
     <div className="flex flex-wrap justify-center items-center gap-10 mt-16">
       <div className="text-center">
         <div className="flex text-yellow-400 justify-center mb-2">
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
-            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-          </svg>
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
-            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-          </svg>
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
-            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-          </svg>
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
-            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-          </svg>
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
-            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-          </svg>
+          {[...Array(5)].map((_, i) => (
+            <svg key={i} xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+          ))}
         </div>
         <p className="text-white font-bold text-xl">5/5</p>
         <p className="text-white/60">Google Reviews</p>
