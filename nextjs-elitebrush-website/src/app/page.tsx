@@ -454,8 +454,8 @@ export default function HomePage() {
     <div className="max-w-4xl mx-auto bg-black/20 p-6 rounded-xl mb-10">
       <h3 className="text-2xl font-bold text-white text-center mb-6">See The Difference</h3>
       <BeforeAfterSlider 
-        afterImage="/images/house-after.jpeg"
-        beforeImage="/images/house-before.jpeg"
+        afterImage="/images/house-after.JPG"
+        beforeImage="/images/house-before.JPG"
       />
     </div>
     
