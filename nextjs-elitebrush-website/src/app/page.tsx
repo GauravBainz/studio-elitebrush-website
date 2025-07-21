@@ -20,6 +20,11 @@ export default function HomePage() {
       role: "Kullar Homes"
     },
     {
+      text: "We hired them first to apply a epoxy coating to our breezeway floor that turned out great So then we hired them to repaint our breezeway, now they are going to paint the outside of our house.We would definitely recommend Elite brush company.",
+      name: "Barry Curtis",
+      role: "Residential Client"
+    },
+    {
       text: "Gaurav and his team did an exceptional job. I was happy with his patience and detailed quote. They were flexible with my schedule and got the job done on a timely manner to get my project ready. I will definitely be working with Elitebrush Co moving forward. Thank guys!",
       name: "Mehtab Bal",
       role: "Residential Client"
