@@ -849,7 +849,23 @@ export default function HomePage() {
       </div>
     </div>
   </div>
+
+
+  <div className="text-center mt-8">
+        <p className="text-white/40 text-sm">
+          Website designed and developed by{' '}
+          <a 
+            href="https://nocturnal.technology/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-white/60 hover:text-white/80 transition-colors"
+          >
+            Nocturnal Technologies
+          </a>
+        </p>
+      </div>
 </section>
+
 
 
 
