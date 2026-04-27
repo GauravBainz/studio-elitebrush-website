@@ -1,14 +1,7 @@
 @import "tailwindcss";
 
-@font-face {
-  font-family: 'Kode Mono';
-  src: url('/fonts/Kode_Mono/KodeMono-VariableFont_wght.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
 @theme {
-  --font-sans: 'Kode Mono', monospace;
+  --font-sans: var(--my-font), monospace;
 }
 
 :root {
@@ -24,18 +17,8 @@
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: var(--font-sans), monospace;
-}
-
-html {
-  font-family: var(--font-sans), monospace;
-}
-
 html, body {
+  color: var(--foreground);
   background-color: black;
-  font-family: 'Kode Mono', monospace !important;
-
+  font-family: var(--my-font), monospace;
 }

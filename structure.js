@@ -1,24 +1,18 @@
-import { orderableDocumentListDeskItem } from '@sanity/orderable-document-list'
+import {orderableDocumentListDeskItem} from '@sanity/orderable-document-list'
 
-export const myStructure = (S) => {
-  return S.list()
+const ORDERABLE_TYPES = ['painting', 'epoxy', 'testimonial']
+
+const structure = (S, context) =>
+  S.list()
     .title('Content')
     .items([
-      // Orderable epoxy items
-      orderableDocumentListDeskItem({
-        type: 'epoxy',
-        title: 'Epoxy Projects',
-        S,
-      }),
-      
-      // Orderable painting items
-      orderableDocumentListDeskItem({
-        type: 'painting',
-        title: 'Painting Projects',
-        S,
-      }),
-      
-      // Add any other document types here 
-      // that shouldn't be orderable as regular list items
+      orderableDocumentListDeskItem({type: 'painting', title: 'Paintings', S, context}),
+      orderableDocumentListDeskItem({type: 'epoxy', title: 'Epoxy', S, context}),
+      orderableDocumentListDeskItem({type: 'testimonial', title: 'Testimonials', S, context}),
+      S.divider(),
+      ...S.documentTypeListItems().filter(
+        (item) => !ORDERABLE_TYPES.includes(item.getId() || '')
+      ),
     ])
-}
+
+export default structure

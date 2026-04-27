@@ -19,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={myFont.variable}>
       <head>
         {/* Google Analytics */}
         <script
@@ -37,7 +37,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={myFont.className}>
+      <body>
         {children}
       </body>
     </html>

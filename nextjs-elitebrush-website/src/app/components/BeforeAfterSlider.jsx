@@ -83,26 +83,19 @@ const BeforeAfterSlider = ({ beforeImage, afterImage, className = '' }) => {
 
   return (
     <div className={`relative w-full max-w-2xl mx-auto ${className}`}>
-      {/* Instruction banner - more compact for mobile */}
-      <div className="text-center mb-3">
-        <div className="inline-flex items-center px-3 py-1.5 bg-black/50 rounded-md text-white text-xs font-medium backdrop-blur-sm">
-          <span>DRAG SLIDER</span>
-        </div>
-      </div>
-      
-      <div 
+      <div
         ref={containerRef}
-        className="relative w-full rounded-xl overflow-hidden cursor-col-resize select-none touch-none shadow-2xl"
+        className="relative w-full overflow-hidden cursor-col-resize select-none touch-none"
         onMouseDown={handleMouseDown}
         onTouchMove={handleTouchMove}
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
-        style={{ 
-          userSelect: 'none', 
-          WebkitUserSelect: 'none', 
+        style={{
+          userSelect: 'none',
+          WebkitUserSelect: 'none',
           touchAction: 'none',
-          aspectRatio: '4/3', // iPhone photo aspect ratio
-          maxHeight: '80vh' // Prevent oversized images on smaller screens
+          aspectRatio: '4/3',
+          maxHeight: '80vh'
         }}
       >
         {/* After image (bottom layer) */}
@@ -117,16 +110,20 @@ const BeforeAfterSlider = ({ beforeImage, afterImage, className = '' }) => {
             sizes="(max-width: 480px) 100vw, (max-width: 768px) 80vw, 50vw"
             quality={85}
           />
-          <div className="absolute bottom-2 right-2 bg-red-500/90 px-2 py-1 rounded text-white text-xs font-semibold shadow-lg backdrop-blur-sm">
-            AFTER
+          <div
+            className="absolute bottom-4 right-4 flex items-center gap-2"
+            style={{ textShadow: '0 1px 8px rgba(0,0,0,0.6)' }}
+          >
+            <p className="text-[10px] uppercase tracking-[0.3em] text-white">After</p>
+            <div className="w-6 h-px bg-red-500"></div>
           </div>
         </div>
-        
+
         {/* Before image with clip path (top layer) */}
-        <div 
+        <div
           className="absolute inset-0 select-none"
-          style={{ 
-            clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` 
+          style={{
+            clipPath: `inset(0 ${100 - sliderPosition}% 0 0)`
           }}
         >
           <Image
@@ -139,8 +136,12 @@ const BeforeAfterSlider = ({ beforeImage, afterImage, className = '' }) => {
             sizes="(max-width: 480px) 100vw, (max-width: 768px) 80vw, 50vw"
             quality={85}
           />
-          <div className="absolute bottom-2 left-2 bg-black/90 px-2 py-1 rounded text-white text-xs font-semibold shadow-lg backdrop-blur-sm">
-            BEFORE
+          <div
+            className="absolute bottom-4 left-4 flex items-center gap-2"
+            style={{ textShadow: '0 1px 8px rgba(0,0,0,0.6)' }}
+          >
+            <div className="w-6 h-px bg-red-500"></div>
+            <p className="text-[10px] uppercase tracking-[0.3em] text-white">Before</p>
           </div>
         </div>
         
