@@ -20,9 +20,17 @@ export default function About() {
               <p className="mb-4 leading-relaxed">
                 We&apos;re young, we&apos;re local, and we take a lot of pride in what we put our name on. Whether it&apos;s a fresh coat of paint or a full epoxy floor, we treat every job like it matters — because to us, it does.
               </p>
-              <p className="mb-4 leading-relaxed">
-                No shortcuts. No excuses. <span className="text-red-500">Just good work.</span>
-              </p>
+
+              <div className="mt-8 flex items-center gap-3">
+                <div className="w-8 h-px bg-red-500"></div>
+                <p className="text-xs md:text-sm uppercase tracking-[0.25em] text-white/80 flex flex-wrap items-center gap-x-2.5">
+                  <span>No shortcuts.</span>
+                  <span className="text-white/30">/</span>
+                  <span>No excuses.</span>
+                  <span className="text-white/30">/</span>
+                  <span className="text-red-500">Just good work.</span>
+                </p>
+              </div>
 
               <div className="grid grid-cols-3 gap-6 mt-10 pt-6 border-t border-white/10">
                 <div>
